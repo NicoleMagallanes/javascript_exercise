@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Exercise 1</title>
+</head>
+
+<body>
+    <h1>Machine Problem 1</h1>
+    <p>
+        Enter a number:
+        <input type="text" id="numberInput" pattern="[0-9]+" />
+        <button onclick="checkNumber()">Check</button>
+    </p>
+    <p id="result1"></p>
+
+    <h1>Machine Problem 2</h1>
+    <p>
+        Enter a character:
+        <input type="text" id="charInput" pattern="[a-zA-Z]" maxlength="1" />
+        <button onclick="checkChar()">Check</button>
+    </p>
+    <p id="result2"></p>
+</body>
+<script>
+    function checkNumber() {
+        const numberInput = document.getElementById("numberInput");
+        const result1 = document.getElementById("result1");
+        if (numberInput.value % 2 === 0) {
+            result1.textContent = `${numberInput.value} is an even number.`;
+        } else {
+            result1.textContent = `${numberInput.value} is an odd number.`;
+        }
+    }
+
+    function checkChar() {
+        const charInput = document.getElementById("charInput");
+        const result2 = document.getElementById("result2");
+        const vowels = ["a", "e", "i", "o", "u"];
+        if (vowels.includes(charInput.value.toLowerCase())) {
+            result2.textContent = `${charInput.value} is a vowel.`;
+        } else {
+            result2.textContent = `${charInput.value} is a consonant.`;
+        }
+    }
+</script>
+
+</html>
