@@ -35,6 +35,7 @@
 
     function checkChar() {
         const charInput = document.getElementById("charInput");
+        charInput.setAttribute("maxlength", "1");
         const result2 = document.getElementById("result2");
         const vowels = ["a", "e", "i", "o", "u"];
         if (vowels.includes(charInput.value.toLowerCase())) {
