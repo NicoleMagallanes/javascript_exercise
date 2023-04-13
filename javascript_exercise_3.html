@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Exercise 3</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4e4e4e;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<body>
+    <div id="output"></div>
+    <script>
+        let staff = [
+            { name: "Oliver Queen", title: "CEO", gender: "male", age: 38, languages: ["english", "spanish"] },
+            { name: "Ben Hur", title: "Security consultant", gender: "male", age: 25, languages: ["latin", "italian"] },
+            { name: "Jessica Alba", title: "Admin Assistant", gender: "female", age: 23, languages: ["english", "spanish"] },
+            { name: "Pepper Piper", title: "Quality Assurance", gender: "female", age: 32, languages: ["english", "spanish"] },
+            { name: "Red Sullivan", title: "Project Manager", gender: "male", age: 27, languages: ["russian", "english"] },
+            { name: "Juan Dela Cruz", title: "Manager", age: 24, gender: "male", languages: ["russian", "french"] },
+            { name: "Anna Salvador", title: "Junior Dev", age: 21, gender: "female", languages: ["english", "french"] },
+            { name: "Mark Bautista", title: "Senior Fullstack Dev", age: 28, gender: "male", languages: ["russion", "spanish"] },
+            { name: "Micheal Garcia", title: "CEO", age: 40, gender: "male", languages: ["english", "latin"] }
+        ];
+        let table = document.createElement("table");
+        let headerRow = table.insertRow();
+        let headerNames = ["Name", "Title", "Gender", "Age", "Languages"];
+
+        for (let i = 0; i < headerNames.length; i++) {
+            let headerCell = document.createElement("th");
+            headerCell.innerHTML = headerNames[i];
+            headerRow.appendChild(headerCell);
+        }
+
+        for (let i = 0; i < staff.length; i++) {
+            let staffRow = table.insertRow();
+            let nameCell = staffRow.insertCell();
+            let titleCell = staffRow.insertCell();
+            let genderCell = staffRow.insertCell();
+            let ageCell = staffRow.insertCell();
+            let languagesCell = staffRow.insertCell();
+            let languages = "";
+
+            for (let j = 0; j < staff[i].languages.length; j++) {
+                if (j === staff[i].languages.length - 1) {
+                    languages += staff[i].languages[j];
+                } else {
+                    languages += staff[i].languages[j] + ", ";
+                }
+            }
+
+            nameCell.innerHTML = staff[i].name;
+            titleCell.innerHTML = staff[i].title;
+            genderCell.innerHTML = staff[i].gender;
+            ageCell.innerHTML = staff[i].age;
+            languagesCell.innerHTML = languages;
+        }
+
+        document.getElementById("output");
+        output.innerHTML = table.outerHTML;
+
+
+        // sort staff by age
+        let outputDiv = document.getElementById("output"); // get the output div element
+        staff.sort((a, b) => {
+            return a.age - b.age;
+        });
+
+        // print staff sorted by age Machine Problem 1
+        outputDiv.innerHTML += "<strong><p>Display all the names and age of the staff:</p></strong>";
+        staff.forEach((person) => {
+            outputDiv.innerHTML += "<p>" + person.name + " - Age: " + person.age + "</p>";
+        });
+
+        // Determine the number of staff with age greater than 30 years old. Machine Problem 2
+        outputDiv.innerHTML += "<strong><p>Age greater than 30 years old:</p></strong>";
+        let staffOver30 = staff.filter((person) => {
+            return person.age > 30;
+        });
+        let numStaffOver30 = staffOver30.length;
+        outputDiv.innerHTML += "<p>" + numStaffOver30;
+
+        //Staff members whose age is  greater than 30 years old.
+        staffOver30.forEach((person) => {
+            outputDiv.innerHTML += "<p>" + person.name;
+        });
+
+        //Determine the number of staff that can speak Spanish. Machine Problem 3 
+        outputDiv.innerHTML += "<strong><p>Number of staff that can speak Spanish:</p></strong>";
+        let spanishSpeakers = staff.filter((person) => {
+            return person.languages.includes("spanish");
+        });
+        let numSpanishSpeakers = spanishSpeakers.length;
+        outputDiv.innerHTML += "<p> " + numSpanishSpeakers;
+
+        //Staff members who can speak Spanish
+        spanishSpeakers.forEach((person) => {
+            outputDiv.innerHTML += "<p>" + person.name;
+        });
+
+    </script>
+</body>
+
+</html>
