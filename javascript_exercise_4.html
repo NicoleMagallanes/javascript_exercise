@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Exercise 4</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    h2 {
+        margin-top: 40px;
+    }
+
+    label {
+        display: block;
+        margin-top: 20px;
+    }
+
+    input[type="text"] {
+        padding: 5px;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 5px 10px;
+        font-size: 16px;
+        background-color: #4caf9e;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #af744c;
+    }
+
+    p {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 100;
+    }
+
+    #divisible-by-seven {
+        background-color: #4caf9e;
+        text-align: left;
+    }
+</style>
+
+<body>
+    <h1>JavaScript Exercise 4</h1>
+
+    <h2>Machine Problem 1</h2>
+    <label for="num-input">Enter a number:</label>
+    <input type="text" id="num-input">
+    <button onclick="findNextDivisibleBySeven()">Find next number divisible by 7</button>
+    <p id="divisible-by-seven"></p>
+
+    <h2>Machine Problem 2</h2>
+    <p id="consecutive-duplicates"></p>
+
+    <h2>Machine Problem 3</h2>
+    <p id="consecutive-triplicates"></p>
+
+    <script>
+        // Problem 1: Find next number divisible by 7
+        function findNextDivisibleBySeven() {
+            const numInput = document.getElementById("num-input");
+            const userInput = Number(numInput.value);
+
+            if (!userInput) {
+                document.getElementById("divisible-by-seven").innerHTML =
+                    "Please enter a number";
+                return;
+            }
+
+            if (Number.isNaN(userInput)) {
+                document.getElementById("divisible-by-seven").innerHTML =
+                    "Please enter a valid number";
+                return;
+            }
+
+            let nextDivisibleBySeven = userInput + (7 - (userInput % 7));
+            document.getElementById("divisible-by-seven").innerHTML =
+                `The next number divisible by 7 is ${nextDivisibleBySeven}`;
+        }
+
+
+        // Machine Problem 2: Count consecutive duplicates
+        function countConsecutiveDuplicates(arr) {
+            let count = 0;
+            for (let i = 0; i < arr.length - 1; i++) {
+                if (arr[i] === arr[i + 1]) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        const numbers = [1, 1, 2, 2, 2, 3, 3, 4, 5, 5, 5, 6, 6, 7, 7, 7, 8, 9, 9, 9];
+        const consecutiveDuplicatesCount = countConsecutiveDuplicates(numbers);
+        document.getElementById("consecutive-duplicates").innerHTML =
+            `The number of occurrences of the same value in a 2 consecutive order in the array is ${consecutiveDuplicatesCount}`;
+
+        //Machine Problem 3: same as MP2 just added a logical AND to evaluate from left to right
+        function countConsecutiveTriplicates(arr) {
+            let count = 0;
+            for (let i = 0; i < arr.length - 2; i++) {
+                if (arr[i] === arr[i + 1] && arr[i + 1] === arr[i + 2]) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        const consecutiveTriplicatesCount = countConsecutiveTriplicates(numbers);
+        document.getElementById("consecutive-triplicates").innerHTML =
+            `The number of occurrences of the same value in a 3 consecutive order in the array is ${consecutiveTriplicatesCount}`;
+    </script>
+</body>
+
+</html>
