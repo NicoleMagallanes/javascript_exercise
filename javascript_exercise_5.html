@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Exercise 5</title>
+</head>
+<style>
+
+    body {
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    }
+
+    .invoice-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .header h1 {
+        font-size: 36px;
+        margin: 0;
+    }
+
+    .header p {
+        font-size: 18px;
+        margin: 5px 0;
+    }
+
+    .invoice-number,
+    .date {
+        font-weight: bold;
+    }
+
+    .address {
+        margin-top: 30px;
+    }
+
+    .address p {
+        font-size: 18px;
+        margin: 5px 0;
+    }
+
+    .address1,
+    .address2 {
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 30px;
+
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4e4e4e;
+        color: white;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    tr:last-child {
+        background-color: #ff505075;
+    }
+</style>
+
+<body>
+    <div class="invoice-container">
+        <div class="header">
+            <h1>Invoice</h1>
+        </div>
+        <div id="invoice-details"> </div>
+        <div id="invoice-table"></div>
+    </div>
+</body>
+<script>
+    //Sample Code
+    let invoice = {
+        invoiceTo: "Juan Dela Cruz", date: "2023-04-15",
+        address1: "810 Oroquieta Street Sta Cruz 1000",
+        address2: "Manila, Metro Manila, Philippines",
+        invoiceNumber: "6845",
+        paymentMode: "COD"
+    };
+
+    let invoiceItems = [{ description: "Mouse", Qty: 3, unitPrice: 200 },
+    { description: "Keyboard", Qty: 3, unitPrice: 400 },
+    { description: "Monitor", Qty: 6, unitPrice: 5400 },
+    { description: "CPU Tower Case", Qty: 3, unitPrice: 1200 },
+    { description: "Headset", Qty: 3, unitPrice: 500 },
+    { description: "UPS", Qty: 1, unitPrice: 4000 },];
+
+    //Machine Problem 1
+
+    //10 invoice number
+    let paddedInvoiceNumber = invoice.invoiceNumber.padStart(10, "0");
+
+    //Combine address1 and address2
+    let address = `${invoice.address1}, ${invoice.address2}`;
+
+    //Format date
+    let date = new Date(invoice.date);
+    let formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+
+    //Display invoice details
+    function displayInvoiceDetails() {
+        const invoiceDetails = document.getElementById('invoice-details');
+        const paddedInvoiceNumber = invoice.invoiceNumber.toString().padStart(10, '0');
+        const formattedDate = new Date(invoice.date).toLocaleDateString('en-GB');
+        const address = `${invoice.address1}, ${invoice.address2}`;
+
+        const detailsHTML = `
+    <strong><p>Invoice To:</strong> ${invoice.invoiceTo}</p>
+        <strong><p>Invoice Number:</strong> ${paddedInvoiceNumber}</p>
+            <strong><p>Date:</strong> ${formattedDate}</p>
+                <strong><p>Address:</strong> ${address}</p>
+                    <strong><p>Payment Mode:</strong> ${invoice.paymentMode}</p>
+  `;
+
+        invoiceDetails.innerHTML = detailsHTML;
+
+    }
+
+    //Machine Problem 2
+    
+    //Calculate total amount
+    let totalAmount = 0;
+    let table = "";
+    for (let i = 0; i < invoiceItems.length; i++) {
+        let item = invoiceItems[i];
+        let amount = item.Qty * item.unitPrice;
+        totalAmount += amount;
+        table += `${item.description} | ${item.Qty} | ${item.unitPrice} | ${amount}\n`;
+    }
+
+    //Add total row to the table
+    table += `Total | | | ${totalAmount}`;
+
+    //Display the table
+    function displayInvoiceTable() {
+        const invoiceTable = document.getElementById('invoice-table');
+        let tableHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Qty</th>
+          <th>Unit Price</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+        let totalAmount = 0;
+        invoiceItems.forEach(item => {
+            const amount = item.Qty * item.unitPrice;
+            totalAmount += amount;
+            tableHTML += `
+      <tr>
+        <td>${item.description}</td>
+        <td>${item.Qty}</td>
+        <td>${item.unitPrice}</td>
+        <td>${amount}</td>
+      </tr>
+    `;
+        });
+        tableHTML += `
+      <tr>
+        <td colspan="3" class="text-right">Total:</td>
+        <td>${totalAmount}</td>
+      </tr>
+    </tbody>
+  </table>
+  `;
+
+        invoiceTable.innerHTML = tableHTML;
+    }
+    window.onload = function () {
+        displayInvoiceDetails();
+        displayInvoiceTable();
+    };
+</script>
+
+</html>
