@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RegEx</title>
+  </head>
+  <body>
+    <label for="input-field">Enter six digits:</label>
+    <input type="text" id="input-field" name="input-field" />
+    <button id="check-button">Check</button>
+    <p id="result"></p>
+    
+    <script>
+      const inputField = document.getElementById("input-field");
+      const checkButton = document.getElementById("check-button");
+      const result = document.getElementById("result");
+      const pattern = /^\d{6}$/;
+
+      checkButton.addEventListener("click", () => {
+        const str = inputField.value;
+        if (pattern.test(str)) {
+          result.textContent = "The string contains exactly six digits.";
+        } else {
+          result.textContent = "The string does not contain exactly six digits.";
+        }
+      });
+    </script>
+  </body>
+</html>

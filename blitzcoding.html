@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Blitz Coding </title>
+</head>
+
+<body>
+    <div id="output"></div>
+    <div id="output2"></div>
+    <div id="output3"></div>
+    <div id="output4"></div>
+    <div id="output5"></div>
+    <div id="output6"></div>
+    <div id="output7"></div>
+    <div id="output8"></div>
+    <div id="output9"></div>
+    <div id="output10"></div>
+    <div id="output11"></div>
+    <div id="output12"></div>
+
+    <script>
+        let programmerQuote = `"Make it work, make it right, make it fast." – Kent Beck`;
+
+        let emplyees = ["John", "Brian", "Michelle", "Angela", "Nicolas", "Grace"];
+
+        let referenceNumer = '1904';
+
+        let sales = [50, 30, 15, 20, 40, 20, 60, 45];
+
+        //BLitzCode 1
+        let referenceNumber = '1904';
+        let paddedReferenceNumber = referenceNumber.padStart(6, '0');
+        document.getElementById('output').innerHTML = paddedReferenceNumber;
+
+        //BlitzCode 2  replace all occurrences of "make" with "made" in the programmerQuote 
+        let modifiedQuote = programmerQuote.replace(/make/gi, 'made');
+        document.getElementById('output2').innerHTML = modifiedQuote;
+
+        /* //BlitzCode 3 using the sales array display the same amount 
+        sales.sort(function (a, b) {
+            return a - b;
+        });
+
+        let sameAmounts = [];
+        for (let i = 0; i < sales.length - 1; i++) {
+            if (sales[i] === sales[i + 1]) {
+                sameAmounts.push(sales[i]);
+            }
+        }
+        
+        document.getElementById('output3').innerHTML = sameAmounts;
+
+        //BlitzCode 4 insert 23 and 42 from the second index of the array
+        sales.splice(2, 0, 23, 42);
+        document.getElementById('output4').innerHTML = sales;
+*/
+        ////BlitzCode 5 Display the current year today
+        const currentDate = new Date();
+        const currentYear = currentDate.getFullYear();
+        document.getElementById('output5').innerHTML = currentYear;
+
+        ////BlitzCode 6 Display Quote all in capital Letters
+        const programmerQuoteInCapitalLetters = programmerQuote.toUpperCase();
+        document.getElementById('output6').innerHTML = programmerQuoteInCapitalLetters;
+
+        ////BlitzCode 7 Display the current date
+        const date = new Date(2019,3);
+        document.getElementById('output7').innerHTML = date;
+/*
+         ////BlitzCode 8 insert 70 in the start of the array
+         sales.splice(0,0,70);
+         document.getElementById('output8').innerHTML = sales;
+*/
+         ////BlitzCode 9 Date Variable year 2025
+         date.setFullYear(2025)
+         document.getElementById('output9').innerHTML = date;
+
+         ////BlitzCode 10 
+         sales.splice (8, 0, 35)
+         document.getElementById('output10').innerHTML = sales;
+
+         sales.push (100)
+         document.getElementById('output11').innerHTML = sales;
+
+         //BlitzCode 12
+         let itCount = programmerQuote.match(/\b(it)\b/g).length;
+         document.getElementById('output12').innerHTML = itCount;
+
+
+    </script>
+</body>
+
+</html>
